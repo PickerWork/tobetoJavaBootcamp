@@ -1,5 +1,9 @@
 package org.example;
 
+import org.example.inheritance.Animal;
+import org.example.inheritance.Bird;
+import org.example.inheritance.Dog;
+import org.example.inheritance.Fish;
 import org.example.models.Category;
 import org.example.models.Order;
 
@@ -153,5 +157,36 @@ public class Main {
 
         Category category = new Category();
         Order order = new Order();
+
+        //Inheritance
+        //Polymorphism
+        //Abstraction - Interface
+
+        Bird bird = new Bird();
+        Dog dog = new Dog();
+        Fish fish = new Fish();
+
+        bird.breathe();
+        dog.breathe();
+        fish.breathe();
+
+        bird.makeSound();
+        dog.makeSound();
+        fish.makeSound();
+
+        //Polymorphism çok çeşitlilik
+
+        Animal animal = new Bird();
+        Animal animal1 = new Dog();
+        Animal animal2 = new Fish();
+
+        //sol taraf animal olduğu için sağ taraftaki objeleri kullanamıyoruz sadece Animaldeki objeleri (eat breathe) kullanabiliyoruz.
+        //Casting kullanarak bunu yapmak mümkün.
+        ((Bird)animal).fly();
+        Bird bird1 = (Bird) animal;
+
+        //Abstraction soyutlama
+
+
     }
 }
