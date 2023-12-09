@@ -1,9 +1,13 @@
 package com.tobeto.springProject.entities;
 
 import jakarta.persistence.*;
+import lombok.*;
+
 @Entity //Entity olduğunu belirtir
 @Table(name = "cars") //Gerekli table bağlanma
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class Car {
     @Id //id olduğunu işaretleme
     @Column(name="id") // Db deki gerekli kolonun ismi
