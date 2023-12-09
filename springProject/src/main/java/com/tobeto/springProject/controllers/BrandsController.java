@@ -1,5 +1,7 @@
 package com.tobeto.springProject.controllers;
 
+import com.tobeto.springProject.dtos.request.brand.AddBrandRequest;
+import com.tobeto.springProject.dtos.responses.brand.GetBrandResponse;
 import com.tobeto.springProject.entities.Brand;
 import com.tobeto.springProject.repositories.BrandRepository;
 import org.springframework.web.bind.annotation.*;
@@ -23,17 +25,23 @@ public class BrandsController {
     }
 
     @GetMapping("{id}")
-    public Brand getById(@PathVariable int id){
+    public GetBrandResponse getById(@PathVariable int id){
         //Optional<T> ilgili filtreden veri dönmeyebilir bunu opsiyonel kılar.
-        return brandRepository.findById(id).orElseThrow();
+        Brand brand = brandRepository.findById(id).orElseThrow();
+        GetBrandResponse getBrandResponse = new GetBrandResponse();
+        getBrandResponse.setName(brand.getName());
+        return getBrandResponse;
     }
     @PostMapping
-    public void add(@RequestBody Brand brand){
-        brandRepository.save(brand);
+    public void add(@RequestBody AddBrandRequest request){
+        Brand brand = new Brand();
+        brand.setName(request.getName());
+
+        brandRepository.save(brand); //mapping işlemi manual mapping -
     }
 
     @PutMapping
-    public void update (@RequestBody Brand brand){}
+    public void update (@RequestBody AddBrandRequest addBrandRequest){}
 
     @DeleteMapping("{id}")
     public void delete(@PathVariable int id){
@@ -44,4 +52,8 @@ public class BrandsController {
         //aşağıdaki kod yukarıdaki yapıyı kullanır
         brandRepository.deleteById(id);
     }
+    //DTO = Data Transfer Object
+
+    //her istek için bir Request bir Response modeli bulunmalıdır.
+    //AddBrandResponse add(AddBrandRequest request) {}
 }
