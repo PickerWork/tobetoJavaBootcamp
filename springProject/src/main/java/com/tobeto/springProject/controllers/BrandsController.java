@@ -1,7 +1,7 @@
 package com.tobeto.springProject.controllers;
 
-import com.tobeto.springProject.dtos.request.brand.AddBrandRequest;
-import com.tobeto.springProject.dtos.responses.brand.GetBrandResponse;
+import com.tobeto.springProject.services.dtos.request.brand.AddBrandRequest;
+import com.tobeto.springProject.services.dtos.responses.brand.GetBrandResponse;
 import com.tobeto.springProject.entities.Brand;
 import com.tobeto.springProject.repositories.BrandRepository;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +24,7 @@ public class BrandsController {
         return brandRepository.findAll();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("{id}") //kullanıcıya cevap giden kısım
     public GetBrandResponse getById(@PathVariable int id){
         //Optional<T> ilgili filtreden veri dönmeyebilir bunu opsiyonel kılar.
         Brand brand = brandRepository.findById(id).orElseThrow();
